@@ -13,6 +13,7 @@ The stage still succeeds and the core graph still lands.
 
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -68,11 +69,12 @@ class KnowledgeStage(Stage):
             skip_tests = not ctx.config.get("knowledge", {}).get(
                 "include_test_files", False
             )
+            commit = ctx.extra.get("commit") or _resolve_head(ctx.repo_path)
             graph, _ = build_graph(
                 ctx.repo_path,
                 strategy=strategy,
                 repo_name=str(ctx.repo_path),
-                commit=ctx.extra.get("commit", ""),
+                commit=commit,
                 generated_at=ctx.extra.get("generated_at"),
                 skip_tests=skip_tests,
             )
@@ -109,11 +111,13 @@ class KnowledgeStage(Stage):
         fixtures_dir = ctx.workspace.parent / llm_config.get(
             "fixtures_dir", "fixtures/llm"
         )
+        transcripts_dir = ctx.workspace.parent / "transcripts"
         try:
             llm = LLMClient(
                 mode=llm_config.get("mode", "replay"),
                 model=llm_config.get("model", "claude-sonnet-5"),
                 fixtures_dir=fixtures_dir,
+                transcripts_dir=transcripts_dir,
                 temperature=llm_config.get("temperature", 0.0),
             )
             return enrich_with_llm(graph, llm)
@@ -128,3 +132,21 @@ class KnowledgeStage(Stage):
 
     def _okf_dir(self, ctx: StageContext) -> Path:
         return ctx.workspace / ".okf"
+
+
+def _resolve_head(repo_path: Path) -> str:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repo_path), "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (
+        subprocess.CalledProcessError,
+        subprocess.TimeoutExpired,
+        FileNotFoundError,
+    ):
+        return ""
+    return result.stdout.strip()
