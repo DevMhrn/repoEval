@@ -106,11 +106,33 @@ def _line_rate(node: Node) -> tuple[float, bool]:
 
 
 def _count_test_refs(graph: RepoGraph) -> dict[str, int]:
-    counts: dict[str, int] = {}
+    """Test-reference counts, with class refs propagated down to methods.
+
+    Test call-edges usually target the class (``Match(int)``) rather than
+    each individual method, so counting only direct edge targets
+    understates method coverage. We treat a test that touches a class
+    as exercising the class's methods too.
+    """
+    direct: dict[str, int] = {}
     for edge in graph.edges:
         if not _is_test_source(edge.source):
             continue
-        counts[edge.target] = counts.get(edge.target, 0) + 1
+        direct[edge.target] = direct.get(edge.target, 0) + 1
+
+    methods_by_owner: dict[str, list[str]] = {}
+    for node in graph.nodes:
+        if node.type != "method":
+            continue
+        owner = node.id.rsplit(".", 1)[0]
+        methods_by_owner.setdefault(owner, []).append(node.id)
+
+    counts = dict(direct)
+    for owner, methods in methods_by_owner.items():
+        cls_refs = direct.get(owner, 0)
+        if not cls_refs:
+            continue
+        for method_id in methods:
+            counts[method_id] = counts.get(method_id, 0) + cls_refs
     return counts
 
 
