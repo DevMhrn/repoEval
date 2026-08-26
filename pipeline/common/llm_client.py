@@ -164,9 +164,12 @@ class LLMClient:
         kwargs: dict[str, Any] = {
             "model": self.model,
             "max_tokens": self.max_tokens,
-            "temperature": self.temperature,
             "messages": [{"role": "user", "content": prompt}],
         }
+        # Note: temperature was removed from the Anthropic API in SDK 1.0
+        # (Claude 5+). We keep ``self.temperature`` because it still feeds
+        # the fixture cache key — flipping it invalidates cached responses
+        # even though the API itself no longer accepts the parameter.
         if system:
             kwargs["system"] = system
         msg = client.messages.create(**kwargs)
