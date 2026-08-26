@@ -137,6 +137,43 @@ def test_mine_gracefully_handles_non_git(tmp_path: Path):
     assert mine_history(tmp_path) == []
 
 
+def test_docs_only_commit_rejected(tmp_path: Path):
+    root = tmp_path
+    root.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    (root / "README.md").write_text("hello\n")
+    _git(root, "add", "-A")
+    _git(root, "commit", "-q", "-m", "initial")
+
+    (root / "CHANGELOG.md").write_text("- fix formatting\n")
+    _git(root, "add", "-A")
+    _git(root, "commit", "-q", "-m", "changelog formatting fix")
+
+    candidates = mine_history(root)
+    subjects = [c.subject for c in candidates]
+    assert not any("changelog" in s.lower() for s in subjects)
+
+
+def test_code_only_commit_rejected_when_test_required(tmp_path: Path):
+    root = tmp_path
+    root.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    (root / "core.py").write_text("def x(): return 1\n")
+    _git(root, "add", "-A")
+    _git(root, "commit", "-q", "-m", "initial")
+
+    (root / "core.py").write_text("def x(): return 2\n")
+    _git(root, "add", "-A")
+    _git(root, "commit", "-q", "-m", "fix off-by-one in x")
+
+    candidates = mine_history(root)
+    assert candidates == []
+
+    # But it qualifies when the test requirement is relaxed.
+    lax = mine_history(root, require_test_change=False)
+    assert any("off-by-one" in c.subject for c in lax)
+
+
 def test_module_span_populated_when_known_provided(tmp_path: Path):
     _seed_bugfix_repo(tmp_path)
     candidates = mine_history(tmp_path, known_module_ids={"pkg.core"})
