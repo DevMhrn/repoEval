@@ -46,6 +46,7 @@ def mine_excision(
     min_body_loc: int = 10,
     max_body_loc: int = 80,
     min_tests_ref: int = 1,
+    min_tests_ref_fallback: int = 3,
 ) -> list[ExcisionCandidate]:
     tests_ref_by_id = _count_test_refs(graph)
 
@@ -62,13 +63,20 @@ def mine_excision(
         if body_loc < min_body_loc or body_loc > max_body_loc:
             continue
 
-        line_rate = _line_rate(node)
-        if line_rate < min_line_rate:
-            continue
-
         tests_ref = tests_ref_by_id.get(node.id, 0)
         if tests_ref < min_tests_ref:
             continue
+
+        line_rate, has_coverage = _line_rate(node)
+        if has_coverage:
+            if line_rate < min_line_rate:
+                continue
+        else:
+            # No coverage data — fall back to tests_ref as a well-testedness
+            # proxy. A function called by >= min_tests_ref_fallback distinct
+            # tests is treated as sufficiently exercised.
+            if tests_ref < min_tests_ref_fallback:
+                continue
 
         candidate = ExcisionCandidate(
             node_id=node.id,
@@ -89,9 +97,12 @@ def mine_excision(
     return candidates[:limit]
 
 
-def _line_rate(node: Node) -> float:
-    coverage = node.metadata.get("coverage", {})
-    return float(coverage.get("line_rate", 0.0))
+def _line_rate(node: Node) -> tuple[float, bool]:
+    """Return ``(line_rate, has_coverage_metadata)``."""
+    coverage = node.metadata.get("coverage")
+    if not isinstance(coverage, dict) or "line_rate" not in coverage:
+        return 0.0, False
+    return float(coverage["line_rate"]), True
 
 
 def _count_test_refs(graph: RepoGraph) -> dict[str, int]:

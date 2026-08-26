@@ -151,6 +151,55 @@ def test_ref_count_zero_excluded_when_min_is_one(tmp_path: Path):
     assert mine_excision(graph, tmp_path) == []
 
 
+def test_no_coverage_metadata_falls_back_to_tests_ref(tmp_path: Path):
+    src = "def wide(a):\n" + "    x = 1\n" * 15 + "    return x\n"
+    (tmp_path / "pkg").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "pkg" / "core.py").write_text(src)
+    node = Node(
+        id="pkg.core.wide",
+        type="function",
+        file="pkg/core.py",
+        line=1,
+        end_line=18,
+        signature="(a)",
+        is_public=True,
+    )
+    # Note: no coverage metadata at all.
+    graph = _graph_with(
+        [node],
+        edges=[
+            Edge(source=f"tests.test_core.test_{i}", target="pkg.core.wide", type="calls")
+            for i in range(4)
+        ],
+    )
+    result = mine_excision(graph, tmp_path)
+    assert len(result) == 1
+    assert result[0].tests_ref_count == 4
+
+
+def test_no_coverage_and_few_test_refs_still_excluded(tmp_path: Path):
+    src = "def wide(a):\n" + "    x = 1\n" * 15 + "    return x\n"
+    (tmp_path / "pkg").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "pkg" / "core.py").write_text(src)
+    node = Node(
+        id="pkg.core.wide",
+        type="function",
+        file="pkg/core.py",
+        line=1,
+        end_line=18,
+        signature="(a)",
+        is_public=True,
+    )
+    graph = _graph_with(
+        [node],
+        edges=[
+            Edge(source="tests.test_core.only_one", target="pkg.core.wide", type="calls"),
+        ],
+    )
+    # No coverage; only 1 test ref — below the fallback threshold of 3.
+    assert mine_excision(graph, tmp_path) == []
+
+
 def test_limit_caps_returned_candidates(tmp_path: Path):
     nodes = []
     edges = []
