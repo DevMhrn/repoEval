@@ -42,12 +42,11 @@ def test_cli_no_command_prints_help_and_exits_nonzero():
     assert result.returncode == 1
 
 
-def test_cli_dispatches_to_stub():
+def test_cli_dispatches_unimplemented_command_cleanly():
     result = subprocess.run(
-        [sys.executable, "-m", "pipeline.cli", "hygiene", "/tmp/fake-repo"],
+        [sys.executable, "-m", "pipeline.cli", "all", "/tmp/fake-repo"],
         capture_output=True,
         text=True,
     )
     assert result.returncode == 0
-    assert "hygiene" in result.stdout.lower()
-    assert "phase 0" in result.stdout.lower()
+    assert "not yet implemented" in result.stdout.lower()
