@@ -280,9 +280,11 @@ def _build_llm(ctx: StageContext) -> LLMClient:
     fixtures_dir = ctx.workspace.parent / llm_config.get(
         "fixtures_dir", "fixtures/llm"
     )
+    transcripts_dir = ctx.workspace.parent / "transcripts"
     return LLMClient(
         mode=llm_config.get("mode", "replay"),
         model=llm_config.get("model", "claude-sonnet-5"),
         fixtures_dir=fixtures_dir,
+        transcripts_dir=transcripts_dir,
         temperature=llm_config.get("temperature", 0.0),
     )
