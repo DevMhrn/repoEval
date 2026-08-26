@@ -1,25 +1,23 @@
 """
-Pin dependencies.
+Pin dependencies delegator.
 
-Delegates to the ecosystem strategy (e.g., PythonStrategy uses uv/pip-tools to
-compile a lockfile). We never call the tool directly from here — that keeps
-this file repo-agnostic.
-
-Success criteria
-----------------
-- A lockfile exists in the repo.
-- A fresh clone + install using the lockfile produces the same resolved
-  versions (verified by re-running the install and diffing).
-
-Phase 0 status: STUB.
+Detects the ecosystem for ``repo_path`` and asks that strategy to
+produce a lockfile. Everything ecosystem-specific lives in the
+strategy; this module stays language-neutral.
 """
 
 from __future__ import annotations
 
 from pathlib import Path
 
-from ..common.ecosystem import EcosystemStrategy
+from ..common.ecosystem import EcosystemStrategy, detect
 
 
-def pin_deps(repo_path: Path, ecosystem: EcosystemStrategy) -> Path:
-    raise NotImplementedError("Phase 1")
+def pin_deps(
+    repo_path: Path,
+    workdir: Path,
+    *,
+    strategy: EcosystemStrategy | None = None,
+) -> Path:
+    strategy = strategy or detect(repo_path)
+    return strategy.pin_deps(repo_path, workdir)

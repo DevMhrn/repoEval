@@ -105,11 +105,6 @@ def test_discover_returns_sorted_paths(tmp_path: Path):
     assert posix_paths == sorted(posix_paths)
 
 
-def test_pin_deps_is_deferred(tmp_path: Path):
-    with pytest.raises(NotImplementedError, match="1.8"):
-        PythonStrategy().pin_deps(tmp_path, tmp_path)
-
-
 def test_ecosystem_strategy_is_abstract():
     with pytest.raises(TypeError):
         EcosystemStrategy()  # type: ignore[abstract]
