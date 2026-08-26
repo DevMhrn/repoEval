@@ -71,6 +71,8 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_hygiene(args)
     if args.command == "knowledge":
         return _cmd_knowledge(args)
+    if args.command == "validate":
+        return _cmd_validate(args)
     if args.command == "info":
         return _cmd_info(args)
 
@@ -144,6 +146,18 @@ def _cmd_knowledge(args: argparse.Namespace) -> int:
         print(f"knowledge success={result.success} error={result.error}")
 
     return 0 if result.success else 1
+
+
+def _cmd_validate(args: argparse.Namespace) -> int:
+    from pipeline.common.validator import validate_task
+
+    report = validate_task(args.task_folder)
+    print(f"validate: {report.verdict}    task={args.task_folder}")
+    for check in report.checks:
+        print(
+            f"  {check['check']:<15}  {check['verdict']:<5}  {check['reason']}"
+        )
+    return 0 if report.verdict == "pass" else 1
 
 
 def _run_id(stage: str) -> str:

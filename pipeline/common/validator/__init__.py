@@ -13,4 +13,5 @@ Each check produces a signed log fragment written into
 tasks/<id>/evidence/. A task without complete evidence is not shippable.
 """
 
-from .harness import validate_task  # noqa: F401
+from .artifact import TaskArtifact  # noqa: F401
+from .harness import ValidationReport, validate_task  # noqa: F401
