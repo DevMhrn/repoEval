@@ -42,6 +42,8 @@ def extract_module_facts(graph: RepoGraph) -> dict[str, ModuleFacts]:
     for mod in modules:
         if mod.id.startswith("<external>"):
             continue
+        if _is_test_id(mod.id):
+            continue
 
         functions, public_functions, classes = _direct_members(graph, mod.id)
         coverage = mod.metadata.get("coverage", {}).get("line_rate")

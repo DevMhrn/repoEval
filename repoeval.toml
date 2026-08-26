@@ -31,7 +31,10 @@ reproducibility_repeats = 2
 [knowledge]
 graph_file = "output/repo_graph.json"
 okf_dir = "output/.okf"
-include_test_files = false
+# Test files are walked so their call-edges to non-test modules populate
+# tests_ref_count. Test-module nodes are filtered out of OKF and never
+# proposed as excision candidates.
+include_test_files = true
 
 [tasks]
 total = 10

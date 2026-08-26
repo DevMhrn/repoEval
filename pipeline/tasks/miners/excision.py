@@ -55,6 +55,8 @@ def mine_excision(
             continue
         if not node.is_public:
             continue
+        if _is_test_source(node.id):
+            continue
 
         body_loc = node.end_line - node.line
         if body_loc < min_body_loc or body_loc > max_body_loc:
