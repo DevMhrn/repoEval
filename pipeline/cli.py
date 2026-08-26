@@ -71,6 +71,8 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_hygiene(args)
     if args.command == "knowledge":
         return _cmd_knowledge(args)
+    if args.command == "tasks":
+        return _cmd_tasks(args)
     if args.command == "validate":
         return _cmd_validate(args)
     if args.command == "info":
@@ -144,6 +146,34 @@ def _cmd_knowledge(args: argparse.Namespace) -> int:
         print(f"knowledge status: ok    graph: {graph_path}    cache_hit: {result.cache_hit}")
     else:
         print(f"knowledge success={result.success} error={result.error}")
+
+    return 0 if result.success else 1
+
+
+def _cmd_tasks(args: argparse.Namespace) -> int:
+    from pipeline.common.config import load
+    from pipeline.common.stage import StageContext
+    from pipeline.tasks.stage import TasksStage
+
+    cfg = load(args.config)
+    workspace = args.workspace or Path(cfg.get("general.workspace", "output"))
+    workspace.mkdir(parents=True, exist_ok=True)
+
+    ctx = StageContext(
+        repo_path=Path(args.repo),
+        workspace=workspace,
+        config=cfg.raw,
+        run_id=_run_id("tasks"),
+    )
+    stage = TasksStage()
+    result = stage.execute(ctx)
+
+    tasks_json = workspace.parent / "tasks.json"
+    if tasks_json.exists():
+        entries = json.loads(tasks_json.read_text())
+        print(f"tasks status: {'ok' if result.success else 'partial'}    count: {len(entries)}    cache_hit: {result.cache_hit}")
+    else:
+        print(f"tasks success={result.success} error={result.error}")
 
     return 0 if result.success else 1
 
