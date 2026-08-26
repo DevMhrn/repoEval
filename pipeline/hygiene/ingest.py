@@ -53,6 +53,15 @@ def ingest(
     repo_path = workspace / "repo"
     source_type = _classify(source)
 
+    if source_type == "path":
+        src_resolved = Path(source).expanduser().resolve()
+        workspace_resolved = workspace.resolve()
+        if workspace_resolved == src_resolved or workspace_resolved.is_relative_to(src_resolved):
+            raise IngestError(
+                "workspace must not be inside the source repository "
+                f"(would recursively copy): source={src_resolved}, workspace={workspace_resolved}"
+            )
+
     if repo_path.exists() and (repo_path / ".git").exists():
         current = _current_head(repo_path)
         if source_type == "path":

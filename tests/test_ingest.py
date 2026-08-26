@@ -108,3 +108,18 @@ def test_ingest_result_reports_source_and_type(tmp_path: Path):
     result = ingest(str(src), tmp_path / "ws")
     assert result.source == str(src)
     assert result.source_type == "path"
+
+
+def test_ingest_rejects_workspace_inside_source(tmp_path: Path):
+    src = tmp_path / "src"
+    _seed_git_repo(src)
+    workspace_inside = src / "output"
+    with pytest.raises(IngestError, match="must not be inside"):
+        ingest(str(src), workspace_inside)
+
+
+def test_ingest_rejects_workspace_equal_to_source(tmp_path: Path):
+    src = tmp_path / "src"
+    _seed_git_repo(src)
+    with pytest.raises(IngestError, match="must not be inside"):
+        ingest(str(src), src)
