@@ -69,6 +69,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "hygiene":
         return _cmd_hygiene(args)
+    if args.command == "knowledge":
+        return _cmd_knowledge(args)
     if args.command == "info":
         return _cmd_info(args)
 
@@ -113,6 +115,33 @@ def _cmd_hygiene(args: argparse.Namespace) -> int:
         )
     else:
         print(f"hygiene success={result.success} error={result.error}")
+
+    return 0 if result.success else 1
+
+
+def _cmd_knowledge(args: argparse.Namespace) -> int:
+    from pipeline.common.config import load
+    from pipeline.common.stage import StageContext
+    from pipeline.knowledge.stage import KnowledgeStage
+
+    cfg = load(args.config)
+    workspace = args.workspace or Path(cfg.get("general.workspace", "output"))
+    workspace.mkdir(parents=True, exist_ok=True)
+
+    ctx = StageContext(
+        repo_path=Path(args.repo),
+        workspace=workspace,
+        config=cfg.raw,
+        run_id=_run_id("knowledge"),
+    )
+    stage = KnowledgeStage()
+    result = stage.execute(ctx)
+
+    graph_path = workspace / "repo_graph.json"
+    if graph_path.exists():
+        print(f"knowledge status: ok    graph: {graph_path}    cache_hit: {result.cache_hit}")
+    else:
+        print(f"knowledge success={result.success} error={result.error}")
 
     return 0 if result.success else 1
 
