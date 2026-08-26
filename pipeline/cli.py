@@ -60,6 +60,10 @@ def _build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    from pipeline.common.env import load_dotenv
+
+    load_dotenv()
+
     parser = _build_parser()
     args = parser.parse_args(argv)
 
