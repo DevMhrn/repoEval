@@ -18,8 +18,8 @@ evidence/*/
 
 transcripts/session_*.jsonl
 
-fixtures/llm/*.json
-!fixtures/llm/.gitkeep
+# fixtures/llm/*.json are committed — they enable byte-identical replay
+# runs by the reviewer at zero API cost. Never ignore them.
 
 .DS_Store
 
