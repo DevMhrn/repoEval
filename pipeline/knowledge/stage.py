@@ -70,10 +70,14 @@ class KnowledgeStage(Stage):
                 "include_test_files", False
             )
             commit = ctx.extra.get("commit") or _resolve_head(ctx.repo_path)
+            # Use basename so the graph (and every LLM prompt built from it)
+            # is portable — an absolute host path here leaks the local
+            # user's home into fixtures and transcripts.
+            repo_name = ctx.extra.get("repo_name") or ctx.repo_path.name
             graph, _ = build_graph(
                 ctx.repo_path,
                 strategy=strategy,
-                repo_name=str(ctx.repo_path),
+                repo_name=repo_name,
                 commit=commit,
                 generated_at=ctx.extra.get("generated_at"),
                 skip_tests=skip_tests,
