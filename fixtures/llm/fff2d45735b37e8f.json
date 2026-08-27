@@ -1,0 +1,11 @@
+{
+  "input_tokens": 319,
+  "key": "fff2d45735b37e8f",
+  "model": "claude-sonnet-5",
+  "output_tokens": 90,
+  "prompt": "Summarise what the Python module `glom.streaming` is for in 1-2 sentences.\n\nDocstring (if any):\nglom's helpers for streaming use cases.\n\nSpecifier types which yield their results incrementally so that they\ncan be applied to targets which are themselves streaming (e.g. chunks\nof rows from a database, lines from a file) without excessive memory\nusage.\n\nglom's streaming functionality revolves around a single :class:`Iter`\nSpecifier type, which has methods to transform the target stream.\n\nPublic identifiers exported:\nFirst, First.glomit, Iter, Iter.all, Iter.chunked, Iter.dropwhile, Iter.filter, Iter.first, Iter.flatten, Iter.glomit, Iter.limit, Iter.map, Iter.slice, Iter.split, Iter.takewhile, Iter.unique, Iter.windowed\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "`glom.streaming` provides the `Iter` specifier type and related helpers for lazily processing streaming targets—such as database rows or file lines—by applying transformations like map, filter, chunked, windowed, and flatten incrementally without loading the entire dataset into memory.",
+  "saved_at": "2026-08-26T20:36:58.708174+00:00",
+  "system": null,
+  "temperature": 0.0
+}

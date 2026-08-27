@@ -1,0 +1,11 @@
+{
+  "input_tokens": 202,
+  "key": "6c0d7b335078cc6a",
+  "model": "claude-sonnet-5",
+  "output_tokens": 118,
+  "prompt": "Summarise what the Python module `glom.test.test_target_types` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\nA, B, C, D, E, F, test_bypass_getitem, test_default_scope_register, test_duck_register, test_exact_register, test_faulty_iterate, test_faulty_op_registration, test_invalid_register, test_iter_set, test_iter_str, test_reregister_type, test_types_bare, test_types_leave_one_out\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's target type registration system, verifying how the library handles custom types through mechanisms like exact/duck-typed registration, scope defaults, and iteration behavior. It tests edge cases such as invalid registrations, type re-registration, and operations on unsupported or malformed types (e.g., faulty iteration or getitem bypassing).",
+  "saved_at": "2026-08-26T20:37:55.562447+00:00",
+  "system": null,
+  "temperature": 0.0
+}

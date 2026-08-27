@@ -1,0 +1,11 @@
+{
+  "input_tokens": 294,
+  "key": "68037eedbac28e6a",
+  "model": "claude-sonnet-5",
+  "output_tokens": 68,
+  "prompt": "Summarise what the Python module `glom.test.test_error` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_3_11_byte_code_caret, test_all_public_errors, test_branching_stack, test_coalesce_stack, test_error, test_error_types, test_fallback, test_glom_dev_debug, test_glom_error_double_stack, test_glom_error_stack, test_good_error, test_line_trace, test_long_target_repr, test_midway_branch, test_nesting_stack, test_pae_api, test_pae_fallback_for_non_path, test_pae_scope_printable, test_partially_failing_branch, test_regular_error_stack, test_unfinalized_glomerror_repr, test_unicode_stack\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's error handling and reporting functionality, verifying correct error types, messages, stack traces, and representations across various glom operations like Coalesce, Fallback, and branching specs.",
+  "saved_at": "2026-08-26T20:37:18.745273+00:00",
+  "system": null,
+  "temperature": 0.0
+}

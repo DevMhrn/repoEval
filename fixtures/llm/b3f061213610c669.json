@@ -1,0 +1,11 @@
+{
+  "input_tokens": 88,
+  "key": "b3f061213610c669",
+  "model": "claude-sonnet-5",
+  "output_tokens": 59,
+  "prompt": "Summarise what the Python module `glom.__main__` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\n(none)\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.__main__` module enables glom to be executed as a command-line script via `python -m glom`, providing an entry point for invoking the library's functionality directly from the terminal.",
+  "saved_at": "2026-08-26T20:36:33.346461+00:00",
+  "system": null,
+  "temperature": 0.0
+}

@@ -1,0 +1,11 @@
+{
+  "input_tokens": 277,
+  "key": "96ded305badf64aa",
+  "model": "claude-sonnet-5",
+  "output_tokens": 92,
+  "prompt": "Summarise what the Python module `glom` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ncli, cli.console_main, cli.get_command, cli.glom_cli, cli.main, cli.mw_get_target, cli.mw_handle_target, core, core.AUTO, core.Auto, core.Auto.glomit, core.BadSpec, core.Call, core.Call.glomit, core.Coalesce, core.Coalesce.glomit, core.CoalesceError, core.CoalesceError.get_message, core.FILL, core.Fill, core.Fill.fill, core.Fill.glomit, core.GlomError, core.GlomError.wrap, core.Glommer\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "glom is a Python library for declaratively specifying, restructuring, and extracting nested data from complex objects, providing composable spec objects (like Call, Coalesce, and Fill) for transforming data structures. It also includes a command-line interface for applying these transformations directly from the shell.",
+  "saved_at": "2026-08-26T20:36:30.733739+00:00",
+  "system": null,
+  "temperature": 0.0
+}

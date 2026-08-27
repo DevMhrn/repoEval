@@ -1,0 +1,11 @@
+{
+  "input_tokens": 296,
+  "key": "93c7ada300539a07",
+  "model": "claude-sonnet-5",
+  "output_tokens": 78,
+  "prompt": "Summarise what the Python module `glom.test.test_path_and_t` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_a_forbidden, test_empty_path_access, test_from_t_identity, test_list_path_access, test_path, test_path_access_error_message, test_path_cache, test_path_eq, test_path_eq_t, test_path_getitem, test_path_items, test_path_len, test_path_slices, test_path_star, test_path_t_roundtrip, test_path_values, test_s_magic, test_star_broadcast, test_star_warning, test_startswith, test_t_arithmetic, test_t_arithmetic_errors, test_t_arithmetic_reprs, test_t_dict_key, test_t_dunders\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's `Path` and `T` objects, verifying path construction, access, equality, caching, and error handling, as well as `T`-based arithmetic, attribute/item access, and special operators like star and s-magic.",
+  "saved_at": "2026-08-26T20:37:35.737188+00:00",
+  "system": null,
+  "temperature": 0.0
+}

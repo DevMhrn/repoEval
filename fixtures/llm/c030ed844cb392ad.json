@@ -1,0 +1,11 @@
+{
+  "input_tokens": 120,
+  "key": "c030ed844cb392ad",
+  "model": "claude-sonnet-5",
+  "output_tokens": 76,
+  "prompt": "Summarise what the Python module `glom.test.perf_report` is for in 1-2 sentences.\n\nDocstring (if any):\nslow gloms that came up organically, used as performance metrics\n\nPublic identifiers exported:\nfunc, ratio, run, setup_list_of_dict\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.perf_report` module provides performance benchmarking utilities for testing slow glom operations that were discovered organically during real-world usage. It sets up test data structures and measures execution ratios to track performance metrics over time.",
+  "saved_at": "2026-08-26T20:37:06.724099+00:00",
+  "system": null,
+  "temperature": 0.0
+}

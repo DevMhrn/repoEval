@@ -1,0 +1,11 @@
+{
+  "input_tokens": 90,
+  "key": "4a9a714e4333acc0",
+  "model": "claude-sonnet-5",
+  "output_tokens": 104,
+  "prompt": "Summarise what the Python module `glom.test.conftest` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\n(none)\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.conftest` module provides shared pytest fixtures and configuration for the glom test suite, enabling common test setup to be reused across multiple test files without explicit imports. It follows pytest's convention of using `conftest.py` files to define fixtures, hooks, and plugins scoped to the test directory.",
+  "saved_at": "2026-08-26T20:37:03.506195+00:00",
+  "system": null,
+  "temperature": 0.0
+}

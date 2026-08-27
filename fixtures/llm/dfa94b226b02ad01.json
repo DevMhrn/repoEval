@@ -1,0 +1,11 @@
+{
+  "input_tokens": 498,
+  "key": "dfa94b226b02ad01",
+  "model": "claude-sonnet-5",
+  "output_tokens": 115,
+  "prompt": "Summarise what the Python module `glom.cli` is for in 1-2 sentences.\n\nDocstring (if any):\nlike jq, but with the full power of python in the spec.\n\nUsage: python -m glom [FLAGS] [spec [target]]\n\nCommand-line interface to the glom library, providing nested data\naccess and data restructuring with the power of Python.\n\n\nFlags:\n\n  --help / -h                 show this help message and exit\n  --target-file TARGET_FILE   path to target data source (optional)\n  --target-format TARGET_FORMAT\n                              format of the source data (json, python, toml,\n                              or yaml) (defaults to 'json')\n  --spec-file SPEC_FILE       path to glom spec definition (optional)\n  --spec-format SPEC_FORMAT   format of the glom spec definition (json, python,\n                              python-full) (defaults to 'python')\n  --indent INDENT             number of spaces to indent the result, 0 to disable\n                              pretty-printing (defaults to 2)\n  --debug                     interactively debug any errors that come up\n  --inspect                   interactively explore the data\n\ntry out:\n`\ncurl -s https://api.github.com/repos/mahmoud/glom/events | python -m glom '[{\"type\": \"type\", \"date\": \"created_at\", \"user\": \"actor.login\"}]'\n\nPublic identifiers exported:\nconsole_main, get_command, glom_cli, main, mw_get_target, mw_handle_target\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "`glom.cli` provides a command-line interface for the glom library, allowing users to access and restructure nested data (JSON, TOML, YAML, or Python) using glom specs, similar to `jq` but with full Python expressiveness. It supports reading targets and specs from files or stdin, formatting output, and includes debugging and interactive inspection modes.",
+  "saved_at": "2026-08-26T20:36:40.258166+00:00",
+  "system": null,
+  "temperature": 0.0
+}

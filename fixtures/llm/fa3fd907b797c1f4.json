@@ -1,0 +1,11 @@
+{
+  "input_tokens": 361,
+  "key": "fa3fd907b797c1f4",
+  "model": "claude-sonnet-5",
+  "output_tokens": 67,
+  "prompt": "Summarise what the Python module `glom.test` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\nconftest, perf_report, perf_report.func, perf_report.ratio, perf_report.run, perf_report.setup_list_of_dict, test_basic, test_basic.test_abstract_iterable, test_basic.test_api_repr, test_basic.test_bbformat, test_basic.test_bbrepr, test_basic.test_beyond_access, test_basic.test_call_and_target, test_basic.test_coalesce, test_basic.test_glom_extra_kwargs, test_basic.test_initial_integration, test_basic.test_inspect, test_basic.test_invoke, test_basic.test_list_item_lift_and_access, test_basic.test_pipe, test_basic.test_python_native, test_basic.test_ref, test_basic.test_scope, test_basic.test_seq_getitem, test_basic.test_skip\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test` module contains the test suite for the glom library, including unit tests covering core functionality like spec resolution, path access, scoping, and object formatting, as well as performance benchmarking utilities.",
+  "saved_at": "2026-08-26T20:37:01.228475+00:00",
+  "system": null,
+  "temperature": 0.0
+}

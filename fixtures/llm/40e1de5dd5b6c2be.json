@@ -1,0 +1,11 @@
+{
+  "input_tokens": 252,
+  "key": "40e1de5dd5b6c2be",
+  "model": "claude-sonnet-5",
+  "output_tokens": 117,
+  "prompt": "Summarise what the Python module `glom.test.test_match` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_and_or_reduction, test_basic, test_check_ported_tests, test_clamp, test_cruddy_json, test_defaults, test_double_wrapping, test_examples, test_json_ref, test_m_call_match, test_match_default, test_match_expressions, test_nested_dict, test_nested_struct, test_pattern_matching, test_precedence, test_regex, test_reprs, test_sample, test_sets, test_shortcircuit, test_sky, test_switch, test_ternary\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_match` module contains unit tests verifying the behavior of glom's pattern-matching functionality, covering features like matching expressions, defaults, ternaries, switches, regexes, sets, and nested structures. It also includes tests for correctness of representations, precedence rules, and edge cases such as short-circuiting and double-wrapping.",
+  "saved_at": "2026-08-26T20:37:29.314445+00:00",
+  "system": null,
+  "temperature": 0.0
+}

@@ -1,0 +1,11 @@
+{
+  "input_tokens": 94,
+  "key": "d057857e10c0a8b0",
+  "model": "claude-sonnet-5",
+  "output_tokens": 91,
+  "prompt": "Summarise what the Python module `glom.test.test_snippets` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_snippet\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_snippets` module provides a test (`test_snippet`) that verifies code snippets, likely those found in documentation or examples, execute correctly and produce expected results. It helps ensure that documented usage examples for the `glom` library remain accurate and functional.",
+  "saved_at": "2026-08-26T20:37:46.941143+00:00",
+  "system": null,
+  "temperature": 0.0
+}

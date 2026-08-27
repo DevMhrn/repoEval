@@ -1,0 +1,11 @@
+{
+  "input_tokens": 321,
+  "key": "5e7c3b57fa7697dd",
+  "model": "claude-sonnet-5",
+  "output_tokens": 141,
+  "prompt": "Summarise what the Python module `glom.matching` is for in 1-2 sentences.\n\nDocstring (if any):\n.. versionadded:: 20.7.0\n\nSometimes you want to confirm that your target data matches your\ncode's assumptions. With glom, you don't need a separate validation\nstep, you can do these checks inline with your glom spec, using\n:class:`~glom.Match` and friends.\n\nPublic identifiers exported:\nAnd, Check, Check.glomit, CheckError, CheckError.get_message, Match, Match.glomit, Match.matches, Match.verify, MatchError, MatchError.get_message, Not, Not.glomit, Optional, Optional.glomit, Or, Regex, Regex.glomit, Required, Switch, Switch.glomit, TypeMatchError, _Bool.glomit, _MExpr.glomit, _MSubspec.glomit\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.matching` module enables inline validation of target data against expected structures and types as part of a glom spec, eliminating the need for a separate validation step. It provides tools like `Match`, `Check`, `And`, `Or`, `Not`, `Regex`, `Optional`, `Required`, and `Switch` to express matching rules and raises descriptive errors (`MatchError`, `CheckError`) when data fails to conform.",
+  "saved_at": "2026-08-26T20:36:48.624795+00:00",
+  "system": null,
+  "temperature": 0.0
+}

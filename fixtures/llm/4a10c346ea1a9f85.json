@@ -1,0 +1,11 @@
+{
+  "input_tokens": 84,
+  "key": "4a10c346ea1a9f85",
+  "model": "claude-sonnet-5",
+  "output_tokens": 80,
+  "prompt": "Summarise what the Python module `setup` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\nimport_path\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `setup` module provides an `import_path` utility, likely used to configure or manipulate Python's module search paths for importing packages or modules from specific locations. It supports setting up the environment needed for proper module resolution during initialization or configuration processes.",
+  "saved_at": "2026-08-26T20:38:05.156956+00:00",
+  "system": null,
+  "temperature": 0.0
+}

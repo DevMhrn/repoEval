@@ -1,0 +1,11 @@
+{
+  "input_tokens": 448,
+  "key": "31954b66cfcbe946",
+  "model": "claude-sonnet-5",
+  "output_tokens": 113,
+  "prompt": "Summarise what the Python module `glom.core` is for in 1-2 sentences.\n\nDocstring (if any):\n*glom gets results.*\n\nThe ``glom`` package has one central entrypoint,\n:func:`glom.glom`. Everything else in the package revolves around that\none function. Sometimes, big things come in small packages.\n\nA couple of conventional terms you'll see repeated many times below:\n\n* **target** - glom is built to work on any data, so we simply\n  refer to the object being accessed as the *\"target\"*\n* **spec** - *(aka \"glomspec\", short for specification)* The\n  accompanying template used to specify the structure of the return\n  value.\n\nNow that you know the terms, let's take a look around glom's powerful\nsemantics.\n\nPublic identifiers exported:\nAUTO, Auto, Auto.glomit, BadSpec, Call, Call.glomit, Coalesce, Coalesce.glomit, CoalesceError, CoalesceError.get_message, FILL, Fill, Fill.fill, Fill.glomit, GlomError, GlomError.wrap, Glommer, Glommer.glom, Glommer.register, Inspect, Inspect.glomit, Invoke, Invoke.constants, Invoke.glomit, Invoke.specfunc\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "glom.core implements the core `glom()` function and its supporting machinery for extracting and restructuring data from a \"target\" object according to a declarative \"spec\" template. It also defines the associated classes and utilities (e.g., Call, Coalesce, Invoke, Glommer, GlomError) that enable flexible, composable data access and transformation patterns.",
+  "saved_at": "2026-08-26T20:36:43.307344+00:00",
+  "system": null,
+  "temperature": 0.0
+}

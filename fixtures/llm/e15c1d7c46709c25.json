@@ -1,0 +1,11 @@
+{
+  "input_tokens": 89,
+  "key": "e15c1d7c46709c25",
+  "model": "claude-sonnet-5",
+  "output_tokens": 68,
+  "prompt": "Summarise what the Python module `glom.test.test_fill` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_fill` module contains unit tests verifying the behavior of glom's \"Fill\" specifier type, which is used to control how nested paths and values are populated within glom's data transformation specs.",
+  "saved_at": "2026-08-26T20:37:21.902268+00:00",
+  "system": null,
+  "temperature": 0.0
+}

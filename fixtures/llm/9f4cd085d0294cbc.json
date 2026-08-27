@@ -1,0 +1,11 @@
+{
+  "input_tokens": 86,
+  "key": "9f4cd085d0294cbc",
+  "model": "claude-sonnet-5",
+  "output_tokens": 77,
+  "prompt": "Summarise what the Python module `glom._version` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\n(none)\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom._version` module stores the package's version information, typically as a version string or tuple used for identifying the installed release of glom. It is usually auto-generated or manually maintained to support version checks, packaging metadata, and compatibility handling.",
+  "saved_at": "2026-08-26T20:36:37.016994+00:00",
+  "system": null,
+  "temperature": 0.0
+}

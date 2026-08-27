@@ -1,0 +1,11 @@
+{
+  "input_tokens": 105,
+  "key": "5d2637292e6c4385",
+  "model": "claude-sonnet-5",
+  "output_tokens": 86,
+  "prompt": "Summarise what the Python module `glom.test.test_tutorial` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_tutorial, test_tutorial_data\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_tutorial` module contains tests that validate the code examples and data used in glom's tutorial documentation, ensuring they run correctly and produce expected results. It helps confirm that the tutorial stays accurate and functional as the library evolves.",
+  "saved_at": "2026-08-26T20:37:58.135193+00:00",
+  "system": null,
+  "temperature": 0.0
+}

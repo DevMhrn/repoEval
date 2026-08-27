@@ -1,0 +1,11 @@
+{
+  "input_tokens": 345,
+  "key": "b1cfab2e1d3cdddd",
+  "model": "claude-sonnet-5",
+  "output_tokens": 107,
+  "prompt": "Summarise what the Python module `glom.mutation` is for in 1-2 sentences.\n\nDocstring (if any):\nBy default, glom aims to safely return a transformed copy of your\ndata. But sometimes you really need to transform an existing object.\n\nWhen you already have a large or complex bit of nested data that you\nare sure you want to modify in-place, glom has you covered, with the\n:func:`~glom.assign` function, and the :func:`~glom.Assign` specifier\ntype.\n\n.. warning::\n\n   glom's deep assignment is powerful, and incorrect use can result in\n   unintended assignments to global state, including class and module\n   attributes, as well as function defaults.\n\n   Be careful when writing assignment specs, and especially careful when\n   any part of the spec is data-driven or provided by an end user.\n\nPublic identifiers exported:\nAssign, Assign.glomit, Delete, Delete.glomit, PathDeleteError, PathDeleteError.get_message, assign, delete\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.mutation` module provides tools for performing safe, deep in-place modifications of nested data structures, including assignment and deletion of values at specified paths via the `assign`/`Assign` and `delete`/`Delete` interfaces. It also includes error handling for invalid deletion paths through `PathDeleteError`.",
+  "saved_at": "2026-08-26T20:36:52.293464+00:00",
+  "system": null,
+  "temperature": 0.0
+}

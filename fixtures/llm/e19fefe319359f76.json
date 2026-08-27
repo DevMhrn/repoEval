@@ -1,0 +1,11 @@
+{
+  "input_tokens": 252,
+  "key": "e19fefe319359f76",
+  "model": "claude-sonnet-5",
+  "output_tokens": 114,
+  "prompt": "Summarise what the Python module `glom.test.test_basic` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_abstract_iterable, test_api_repr, test_bbformat, test_bbrepr, test_beyond_access, test_call_and_target, test_coalesce, test_glom_extra_kwargs, test_initial_integration, test_inspect, test_invoke, test_list_item_lift_and_access, test_pipe, test_python_native, test_ref, test_scope, test_seq_getitem, test_skip, test_spec_and_recursion, test_stop, test_top_level_default, test_val\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's core functionality, covering basic access patterns, path traversal, spec composition, and control-flow constructs like Coalesce, Invoke, Ref, and Inspect. It verifies expected behavior for things like default values, scope handling, kwargs passing, and error/skip conditions across common glom usage scenarios.",
+  "saved_at": "2026-08-26T20:37:10.669139+00:00",
+  "system": null,
+  "temperature": 0.0
+}

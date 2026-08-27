@@ -1,0 +1,11 @@
+{
+  "input_tokens": 130,
+  "key": "18c7fede2e22a860",
+  "model": "claude-sonnet-5",
+  "output_tokens": 95,
+  "prompt": "Summarise what the Python module `glom.test.test_scope_vars` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_globals, test_let, test_max_skip, test_s_scope_assign, test_scoped_vars, test_vars\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_scope_vars` module contains unit tests verifying glom's scope-related variable features, including globals, let bindings, scoped variable assignment, and skip depth limits. It ensures these mechanisms correctly manage and propagate variable state across nested glom specifications.",
+  "saved_at": "2026-08-26T20:37:43.097771+00:00",
+  "system": null,
+  "temperature": 0.0
+}

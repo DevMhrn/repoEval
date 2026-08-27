@@ -1,0 +1,11 @@
+{
+  "input_tokens": 226,
+  "key": "f7eb7a16d6e6c5c5",
+  "model": "claude-sonnet-5",
+  "output_tokens": 103,
+  "prompt": "Summarise what the Python module `glom.test.test_cli` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\nbasic_spec_path, basic_target_path, cc, test_cli_blank, test_cli_scalar, test_cli_spec_argv_target_stdin_basic, test_cli_spec_target_argv_basic, test_cli_spec_target_files_basic, test_main, test_main_basic, test_main_python_full_spec_python_target, test_main_toml_target, test_main_yaml_target, test_usage_errors\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's command-line interface (CLI), verifying that specs and targets can be correctly passed via files, stdin, or arguments in formats like JSON, YAML, TOML, and Python. It also tests basic CLI invocation, usage error handling, and scalar/blank input edge cases.",
+  "saved_at": "2026-08-26T20:37:15.288056+00:00",
+  "system": null,
+  "temperature": 0.0
+}

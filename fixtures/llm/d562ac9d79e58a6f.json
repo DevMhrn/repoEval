@@ -1,0 +1,11 @@
+{
+  "input_tokens": 124,
+  "key": "d562ac9d79e58a6f",
+  "model": "claude-sonnet-5",
+  "output_tokens": 70,
+  "prompt": "Summarise what the Python module `glom.test.test_grouping` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_agg, test_bucketing, test_corner_cases, test_limit, test_reduce, test_sample\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_grouping` module contains unit tests for glom's grouping functionality, covering aggregation, bucketing, reduction, sampling, and limiting operations, along with edge cases for these features.",
+  "saved_at": "2026-08-26T20:37:24.951018+00:00",
+  "system": null,
+  "temperature": 0.0
+}

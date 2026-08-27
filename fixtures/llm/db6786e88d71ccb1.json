@@ -1,0 +1,11 @@
+{
+  "input_tokens": 100,
+  "key": "db6786e88d71ccb1",
+  "model": "claude-sonnet-5",
+  "output_tokens": 72,
+  "prompt": "Summarise what the Python module `glom.test.test_spec` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_scope_spec, test_spec\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `glom.test.test_spec` module contains unit tests for glom's `Spec` functionality, verifying core spec behavior through `test_spec` and testing scope-related spec handling through `test_scope_spec`.",
+  "saved_at": "2026-08-26T20:37:49.040817+00:00",
+  "system": null,
+  "temperature": 0.0
+}

@@ -1,0 +1,11 @@
+{
+  "input_tokens": 290,
+  "key": "e8968b4fef4b0424",
+  "model": "claude-sonnet-5",
+  "output_tokens": 96,
+  "prompt": "Summarise what the Python module `glom.test.test_mutation` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_assign, test_assign_missing_dict, test_assign_missing_object, test_assign_missing_signature, test_assign_missing_unassignable, test_assign_missing_with_extant_keys, test_assign_recursive, test_assign_spec_val, test_bad_assign_target, test_bad_delete_target, test_delete, test_delete_ignore_missing, test_invalid_assign_op_target, test_invalid_delete_op_target, test_s_assign, test_sequence_assign, test_sequence_delete, test_star_broadcast, test_unregistered_assign, test_unregistered_delete\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's mutation capabilities, verifying the `Assign` and `Delete` operations across various target types including dicts, objects, and sequences. It also tests edge cases such as missing keys, invalid targets, unregistered types, and recursive or spec-based assignments.",
+  "saved_at": "2026-08-26T20:37:32.343101+00:00",
+  "system": null,
+  "temperature": 0.0
+}

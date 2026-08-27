@@ -1,0 +1,11 @@
+{
+  "input_tokens": 87,
+  "key": "96dc656a009e2403",
+  "model": "claude-sonnet-5",
+  "output_tokens": 56,
+  "prompt": "Summarise what the Python module `docs.conf` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\n(none)\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "The `docs/conf.py` module is the configuration file for Sphinx, used to define settings for building a project's documentation, such as extensions, theme options, and project metadata.",
+  "saved_at": "2026-08-26T20:36:27.097996+00:00",
+  "system": null,
+  "temperature": 0.0
+}

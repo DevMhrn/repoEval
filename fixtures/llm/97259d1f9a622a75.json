@@ -1,0 +1,11 @@
+{
+  "input_tokens": 155,
+  "key": "97259d1f9a622a75",
+  "model": "claude-sonnet-5",
+  "output_tokens": 104,
+  "prompt": "Summarise what the Python module `glom.test.test_reduction` is for in 1-2 sentences.\n\nDocstring (if any):\n(none)\n\nPublic identifiers exported:\ntest_flatten, test_flatten_func, test_fold, test_fold_bad_iter, test_merge, test_merge_func, test_merge_omd, test_sum_integers, test_sum_seqs\n\nOutput only the summary sentence(s). No quotes, no meta-commentary.\n",
+  "response_text": "This module contains unit tests for glom's reduction utilities, verifying functions like flatten, fold, merge, and sum correctly aggregate or combine data structures such as sequences, dictionaries, and ordered multi-dicts. It also tests error handling for invalid inputs, such as bad iterators passed to fold.",
+  "saved_at": "2026-08-26T20:37:39.299766+00:00",
+  "system": null,
+  "temperature": 0.0
+}
