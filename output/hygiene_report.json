@@ -1,0 +1,29 @@
+{
+  "reproducibility": "skipped",
+  "stage": "hygiene",
+  "status": "ok",
+  "steps": {
+    "baseline": {
+      "reason": "build failed for repoeval-baseline-20ca046a6239: Credentials store error: StoreError('Credentials store docker-credential-gcloud exited with \"\".')",
+      "skipped": true
+    },
+    "dockerfile": "output/repo/Dockerfile",
+    "ecosystem": "python",
+    "ingest": {
+      "commit": "30b477ab65560914a38f331614947d0894701044",
+      "reused": false,
+      "source_type": "path"
+    },
+    "lint": {
+      "clean": false,
+      "residual": 201
+    },
+    "pin_deps": {
+      "lockfile": "output/repo/requirements.lock"
+    },
+    "reproducibility": {
+      "reason": "docker unavailable",
+      "skipped": true
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "completed_at": "2026-08-26T20:52:39.944025+00:00",
+  "duration_sec": 19.007564,
+  "input_hash": "90d4da8ab79068efb601e9bec87cbd28a2b696d09151d43b62d11814c6fd707a",
+  "outputs": {
+    "tasks.json": "index",
+    "tasks/task_001": "task",
+    "tasks/task_002": "task",
+    "tasks/task_003": "task",
+    "tasks/task_004": "task",
+    "tasks/task_005": "task",
+    "tasks/task_006": "task",
+    "tasks/task_007": "task",
+    "tasks/task_008": "task"
+  },
+  "run_id": "tasks-20260826-205220",
+  "stage": "tasks"
+}
