@@ -183,7 +183,10 @@ class TasksStage(Stage):
                     source="excision",
                     score=e.score,
                     module=e.node_id.rsplit(".", 1)[0],
-                    files_touched={e.file},
+                    # Include node id in files_touched so two excisions in
+                    # the same file (targeting different functions) don't
+                    # get deduplicated against each other.
+                    files_touched={f"{e.file}::{e.node_id}"},
                     payload=e,
                 )
             )
