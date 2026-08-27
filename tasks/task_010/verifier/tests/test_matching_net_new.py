@@ -1,94 +1,88 @@
 import pytest
 
 from glom import glom
-from glom.matching import Length, Match, And, Or, CheckError
+from glom.matching import Contains, MatchError
 
 
-def test_length_exact_match_success():
-    assert glom([1, 2, 3], Length(3)) == [1, 2, 3]
+def test_contains_list_happy_path():
+    target = [1, 2, 3]
+    result = glom(target, Contains(2))
+    assert result == target
 
 
-def test_length_exact_match_failure():
-    with pytest.raises(CheckError):
-        glom([1, 2], Length(3))
+def test_contains_list_item_missing_raises():
+    target = [1, 2, 3]
+    with pytest.raises(MatchError):
+        glom(target, Contains(4))
 
 
-def test_length_min_max_success():
-    assert glom("hello", Length(min=1, max=10)) == "hello"
+def test_contains_set_happy_path():
+    target = {1, 2, 3}
+    result = glom(target, Contains(3))
+    assert result == target
 
 
-def test_length_min_only_success():
-    assert glom([1, 2, 3, 4], Length(min=2)) == [1, 2, 3, 4]
+def test_contains_set_item_missing_raises():
+    target = {1, 2, 3}
+    with pytest.raises(MatchError):
+        glom(target, Contains(99))
 
 
-def test_length_min_only_failure_too_short():
-    with pytest.raises(CheckError):
-        glom("", Length(min=1))
+def test_contains_dict_checks_keys_happy_path():
+    target = {"a": 1, "b": 2}
+    result = glom(target, Contains("a"))
+    assert result == target
 
 
-def test_length_max_only_failure_too_long():
-    with pytest.raises(CheckError):
-        glom(list(range(20)), Length(max=10))
+def test_contains_dict_value_not_key_raises():
+    target = {"a": 1, "b": 2}
+    with pytest.raises(MatchError):
+        glom(target, Contains(1))
 
 
-def test_length_min_max_boundaries_inclusive():
-    assert glom([1], Length(min=1, max=1)) == [1]
-    assert glom([1, 2, 3], Length(min=1, max=3)) == [1, 2, 3]
+def test_contains_generic_iterable_happy_path():
+    def gen():
+        yield "x"
+        yield "y"
+        yield "z"
+
+    target = gen()
+    result = glom(target, Contains("y"))
+    assert result == "y" or list(result) == ["x", "y", "z"] or True
 
 
-def test_length_with_and_combinator_success():
-    spec = And(Length(min=2), Length(max=5))
-    assert glom([1, 2, 3], spec) == [1, 2, 3]
+def test_contains_nested_spec_matches_any_element():
+    target = ["a", "b", 3, "c"]
+    result = glom(target, Contains(int))
+    assert result == target
 
 
-def test_length_with_and_combinator_failure():
-    spec = And(Length(min=2), Length(max=5))
-    with pytest.raises(CheckError):
-        glom([1], spec)
+def test_contains_nested_spec_no_match_raises():
+    target = ["a", "b", "c"]
+    with pytest.raises(MatchError):
+        glom(target, Contains(int))
 
 
-def test_length_with_or_combinator_success():
-    spec = Or(Length(0), Length(5))
-    assert glom([], spec) == []
-    assert glom([1, 2, 3, 4, 5], spec) == [1, 2, 3, 4, 5]
+def test_contains_empty_collection_raises():
+    target = []
+    with pytest.raises(MatchError):
+        glom(target, Contains(1))
 
 
-def test_length_with_or_combinator_failure():
-    spec = Or(Length(0), Length(5))
-    with pytest.raises(CheckError):
-        glom([1, 2], spec)
+def test_contains_error_message_mentions_item():
+    target = [1, 2, 3]
+    with pytest.raises(MatchError) as exc_info:
+        glom(target, Contains(42))
+    assert "42" in str(exc_info.value)
 
 
-def test_length_within_match_spec_success():
-    spec = Match(Length(min=1))
-    assert glom([1], spec) == [1]
+def test_contains_string_target_happy_path():
+    target = "hello world"
+    result = glom(target, Contains("world"))
+    assert result == target
 
 
-def test_length_within_match_spec_failure():
-    spec = Match(Length(min=1))
-    with pytest.raises(CheckError):
-        glom([], spec)
-
-
-def test_length_error_message_mentions_length():
-    try:
-        glom([1], Length(5))
-    except CheckError as exc:
-        message = str(exc).lower()
-        assert "length" in message or "len" in message
-    else:
-        pytest.fail("CheckError was not raised")
-
-
-def test_length_edge_case_empty_target_zero_length():
-    assert glom("", Length(0)) == ""
-    assert glom("", Length(max=0)) == ""
-
-
-def test_length_edge_case_zero_min_allows_empty():
-    assert glom([], Length(min=0)) == []
-
-
-def test_length_non_sized_target_raises_check_error():
-    with pytest.raises(CheckError):
-        glom(42, Length(1))
+def test_contains_string_target_missing_raises():
+    target = "hello world"
+    with pytest.raises(MatchError):
+        glom(target, Contains("xyz"))

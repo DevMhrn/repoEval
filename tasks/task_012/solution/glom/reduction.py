@@ -356,52 +356,51 @@ def merge(target, **kwargs):
     spec = Merge(subspec, init, op)
     return glom(target, spec)
 
+from glom.core import T, glom
+
+
 class Product(object):
-    """The `Product` reducer accumulates the product of an iterable of
-    numbers, or an iterable of items to be multiplied together, in
-    which case a *key* can be provided, similar to :func:`sorted()`'s
-    *key*.
+    """A reducer that multiplies the values it is given.
+
+    Mirrors :class:`Sum`, but performs multiplication instead of
+    addition. Useful with :func:`~glom.flatten` or other
+    aggregation-style specs.
 
     Args:
        init (callable): A function that returns the starting value
-          for the product (1, by default).
-       key (callable): A function that returns the "target" value to
-          multiply, similar to the built-in :func:`sorted()`
-          function's *key* keyword argument, this can be a
-          glom-spec too.
-
+          for the product (or, for convenience, a plain value may be
+          passed directly). Defaults to a function returning ``1``,
+          mirroring how :class:`Sum` defaults to ``0``.
+       spec: A spec to be applied on each element of the iterable
+          before multiplying. Defaults to `T`, aka the identity spec,
+          which returns the element as-is.
     """
-    def __init__(self, init=lambda: 1, key=None):
-        self._init = init
-        self._key = key
+    def __init__(self, init=lambda: 1, spec=T):
+        self.init = init
+        self.spec = spec
 
     def glomit(self, target, scope):
-        if self._key is not None:
-            target = [scope[glom](t, self._key, scope) for t in target]
-
-        ret = self._init()
-        for i, t in enumerate(target):
-            try:
-                ret = ret * t
-            except Exception as e:
-                raise GlomError.wrap(e)
-        return ret
+        base = self.init() if callable(self.init) else self.init
+        for t in target:
+            base *= scope[glom](t, self.spec, scope)
+        return base
 
     def __repr__(self):
         cn = self.__class__.__name__
-        if self._key is not None:
-            return '%s(key=%r)' % (cn, self._key)
-        return '%s()' % (cn,)
+        return '%s(init=%r, spec=%r)' % (cn, self.init, self.spec)
 
 
-def product(init=lambda: 1, key=None):
-    """Multiplies the items of an iterable together, with support for a
-    key function, similar to :func:`sorted()`'s *key* argument.
+def product(iterable, init=lambda: 1, spec=T):
+    """Compute the product of the elements of an iterable, mirroring
+    the behavior of the built-in :func:`sum`-alike found in
+    :func:`glom.reduction.sum`.
 
     Args:
+       iterable: An iterable of items to multiply together.
        init (callable): A function that returns the starting value
-          for the product (1, by default).
-       key (callable): A function or glom-spec used to extract the
-          value to be multiplied from each item.
+          for the product (or a plain value). Defaults to a function
+          returning ``1``.
+       spec: A spec to apply to each element before multiplying.
+          Defaults to `T`, the identity spec.
     """
-    return Product(init=init, key=key)
+    return Product(init=init, spec=spec).glomit(iterable, {glom: glom})
